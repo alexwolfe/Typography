@@ -1,20 +1,87 @@
 @import "compass";
+@import 'mixins';
+@import 'options';
 
-$font-size: 14px;
-$line-height: 24px;
-$font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$font-weight: 300;
-$font-color: #333;
-$namespace: '.type';
+//TODO: On the fence on whether it's "too opinionated" to set margin-bottom :p
 
 body {
-    font-size: $font-size;
-    line-height: $line-height;
-    font-family: $font-family;
-    font-weight: $font-weight;
-    color: $font-color;
+    font-size: $unicorn-type-font-size;
+    line-height: $unicorn-type-line-height;
+    font-family: $unicorn-type-font-family;
+    font-weight: $unicorn-type-font-weight;
+    color: $unicorn-type-font-color;
 }
 
-h1 {
+/* HEADERS */
+h1,h2,h3,h4,h5,h6 {
+  font-family: $unicorn-type-font-family;
+  font-weight: $unicorn-type-font-weight;
+  color: $unicorn-type-font-color;
+  text-rendering: optimizeLegibility;
+  a {
+    color: $unicorn-type-link-color;
+  }
+}
+h1,h2,h3,h4,h5,h6 {
+	line-height: 1.2;
+	margin-top: 1.2;
+}
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+	margin-top: 0;
+}
+// http://www.w3.org/TR/html-markup/h1.html
+h1 {@include size(font-size, 2, $unicorn-type-base-size, $unicorn-type-unit); }
+h2 {@include size(font-size, 1.5, $unicorn-type-base-size, $unicorn-type-unit); }
+h3 {@include size(font-size, 1.25, $unicorn-type-base-size, $unicorn-type-unit); }
+h4 {@include size(font-size, 1.125, $unicorn-type-base-size, $unicorn-type-unit); }
+h5 {@include size(font-size, 1, $unicorn-type-base-size, $unicorn-type-unit); }
+h6 {@include size(font-size, 0.875, $unicorn-type-base-size, $unicorn-type-unit); }
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin: 0;}
 
+/* LINKS */
+a, a:link { color: $unicorn-type-link-color; }
+a:visited { color: $unicorn-type-link-color-visited; }
+a:hover   { color: $unicorn-type-link-color-hover; }
+a:active  { color: $unicorn-type-link-color-active; }
+
+/* LISTS */
+//Just removes list style; takes an "un-opinionated" approach for margins etc.
+ul { list-style: none outside; }
+ol { list-style: decimal; }
+ul.square { list-style: square outside; }
+ul.circle { list-style: circle outside; }
+ul.disc { list-style: disc outside; }
+
+//Normalize nested lists and paragraphs to base
+li, li li, li li li, li li li li, li li li li li,
+p, p p, p p p, p p p p, p p p p p {
+	@include size(font-size, 1, $unicorn-type-base-size, $unicorn-type-unit);
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: $unicorn-type-medium-breakpoint) {
+	body {
+		font-size: 90%;
+	}
+}
+@media screen and (max-width: $unicorn-type-small-breakpoint) {
+	body {
+		font-size: 80%;
+	}
+}
+// Some basic print boiler-plate
+@media print {
+	* {
+		background: transparent !important;
+		color: #000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+	p, h1, h2, h3 {
+		/* http://css-tricks.com/almanac/properties/o/orphans/ */
+		orphans: 3
+		/* http://css-tricks.com/almanac/properties/w/widows/ */;
+		widows: 3;
+	}
+	h2,h3 {page-break-after: avoid;}
 }

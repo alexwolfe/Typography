@@ -1,0 +1,32 @@
+// Example:
+// $value: 160.44
+// $length: px-em-or-rems($value)
+@function px-em-or-rems($target, $context, $type) {
+	@if($type == 'em') {
+		@return strip-units($target) / strip-units($context) * 1em;
+	} @else if ($type == 'rem') {
+		@return strip-units($target) / strip-units($context) * 1rem;
+	} @else {
+		@return strip-units($target) * 1px;
+	}
+}
+
+@mixin size($property, $multiplier, $base, $type) {
+	$pixels: strip-units($base * $multiplier) * 1px;
+	// $pixels: #{$px}px;
+	@if($type == 'em') {
+		$ems: px-em-or-rems($pixels, $base, $type);
+  	#{$property}: $ems; 
+	} @else if ($type == 'rem') {
+		$rems: px-em-or-rems($pixels, $base, $type);
+		#{$property}: $pixels;
+  	#{$property}: $rems; 
+	} @else {
+		#{$property}: $pixels;
+	}
+}
+
+// https://github.com/nex3/sass/issues/533
+@function strip-units($value) {
+    @return $value / ($value * 0 + 1);
+}

@@ -1,0 +1,35 @@
+//////////////////////////////////////////////////////////
+// BASE DEFAULTS /////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//Reference: http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/
+$unicorn-type-font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !default;
+$unicorn-type-font-weight: 300 !default;
+$unicorn-type-font-color: #333 !default;
+$unicorn-type-link-color:  #c00;
+$unicorn-type-link-color-visited:  #0c0;
+$unicorn-type-link-color-hover:  #00c;
+$unicorn-type-link-color-active:  #ccc;
+$unicorn-type-font-style: normal !default;
+$unicorn-type-text-rendering: optimizeLegibility !default;
+$unicorn-type-line-height: 1.4 !default;
+
+//////////////////////////////////////////////////////////
+// EMS VS PIXELS VS REMS /////////////////////////////////
+//////////////////////////////////////////////////////////
+//This can be either of: px, em, or rem
+// $unicorn-type-unit: 'px' !default;
+// $unicorn-type-unit: 'rem' !default;
+$unicorn-type-unit: 'em' !default;
+
+//Set these in pixels whether the unit you're going to use is fixed for fluid
+$unicorn-type-base-size: 16px !default;
+$unicorn-type-small-breakpoint: 480px !default;
+$unicorn-type-medium-breakpoint: 900px !default;
+
+$unicorn-type-font-size: $unicorn-type-base-size;
+@if($unicorn-type-unit == 'em' or $unicorn-type-unit == 'rem') {
+	$percent: 100 * ($unicorn-type-base-size / 16); /*so if base is 20 we'd get 100*(20/16)=125 */
+	$unicorn-type-font-size: $percent * 1% !default;
+	$unicorn-type-small-breakpoint: px-em-or-rems($unicorn-type-small-breakpoint, $unicorn-type-base-size, $unicorn-type-unit) !default;/* 480 / 16 = 30em */
+	$unicorn-type-medium-breakpoint: px-em-or-rems($unicorn-type-medium-breakpoint, $unicorn-type-base-size, $unicorn-type-unit) !default;/* 900 / 16 = 56.25 */
+}

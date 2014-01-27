@@ -1,8 +1,158 @@
-/* line 10, ../scss/typography.scss */
+/*so if base is 20 we'd get 100*(20/16)=125 */
+/* 480 / 16 = 30em */
+/* 900 / 16 = 56.25 */
+/* line 7, ../scss/typography.scss */
 body {
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 1.4;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   color: #333333;
+}
+
+/* HEADERS */
+/* line 20, ../scss/typography.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  color: #333333;
+  text-rendering: optimizeLegibility;
+}
+/* line 25, ../scss/typography.scss */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: #cc0000;
+}
+
+/* line 29, ../scss/typography.scss */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-top: 1.2;
+}
+
+/* line 33, ../scss/typography.scss */
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+  margin-top: 0;
+}
+
+/* line 37, ../scss/typography.scss */
+h1 {
+  font-size: 2em;
+}
+
+/* line 38, ../scss/typography.scss */
+h2 {
+  font-size: 1.5em;
+}
+
+/* line 39, ../scss/typography.scss */
+h3 {
+  font-size: 1.25em;
+}
+
+/* line 40, ../scss/typography.scss */
+h4 {
+  font-size: 1.125em;
+}
+
+/* line 41, ../scss/typography.scss */
+h5 {
+  font-size: 1em;
+}
+
+/* line 42, ../scss/typography.scss */
+h6 {
+  font-size: 0.875em;
+}
+
+/* line 43, ../scss/typography.scss */
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+  margin: 0;
+}
+
+/* LINKS */
+/* line 46, ../scss/typography.scss */
+a, a:link {
+  color: #cc0000;
+}
+
+/* line 47, ../scss/typography.scss */
+a:visited {
+  color: #00cc00;
+}
+
+/* line 48, ../scss/typography.scss */
+a:hover {
+  color: #0000cc;
+}
+
+/* line 49, ../scss/typography.scss */
+a:active {
+  color: #cccccc;
+}
+
+/* LISTS */
+/* line 53, ../scss/typography.scss */
+ul {
+  list-style: none outside;
+}
+
+/* line 54, ../scss/typography.scss */
+ol {
+  list-style: decimal;
+}
+
+/* line 55, ../scss/typography.scss */
+ul.square {
+  list-style: square outside;
+}
+
+/* line 56, ../scss/typography.scss */
+ul.circle {
+  list-style: circle outside;
+}
+
+/* line 57, ../scss/typography.scss */
+ul.disc {
+  list-style: disc outside;
+}
+
+/* line 61, ../scss/typography.scss */
+li, li li, li li li, li li li li, li li li li li,
+p, p p, p p p, p p p p, p p p p p {
+  font-size: 1em;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+  /* line 67, ../scss/typography.scss */
+  body {
+    font-size: 90%;
+  }
+}
+@media screen and (max-width: 480px) {
+  /* line 72, ../scss/typography.scss */
+  body {
+    font-size: 80%;
+  }
+}
+@media print {
+  /* line 78, ../scss/typography.scss */
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* line 84, ../scss/typography.scss */
+  p, h1, h2, h3 {
+    /* http://css-tricks.com/almanac/properties/o/orphans/ */
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* line 90, ../scss/typography.scss */
+  h2, h3 {
+    page-break-after: avoid;
+  }
 }
